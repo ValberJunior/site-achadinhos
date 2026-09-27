@@ -1,0 +1,21 @@
+# Não é um compose completo — é o SERVIÇO a colar no docker-compose.yml já
+# existente na VPS2 (mesmo Postgres/n8n/Evolution API do resto do projeto,
+# ver Infra.md). Ajuste nome do serviço/rede/porta conforme o compose real.
+
+services:
+  site-achadinhos:
+    build: ./site-achadinhos # caminho onde este projeto for colocado na VPS
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: "postgres://nutra_admin:${POSTGRES_PASSWORD}@nutra_postgres:5432/nutra_usa"
+      NEXT_PUBLIC_SITE_URL: "https://achadinhos.SEU_DOMINIO.com.br"
+      NEXT_PUBLIC_FB_PIXEL_ID: "${FB_PIXEL_ID}"
+    ports:
+      - "3000:3000" # ou só exponha via rede interna se já tiver reverse proxy (nginx/traefik/caddy)
+    networks:
+      - default # troque pelo nome da rede compartilhada com o container nutra_postgres
+
+networks:
+  default:
+    external: true
+    name: SEU_NETWORK_COMPARTILHADO # nome da network onde nutra_postgres já está
