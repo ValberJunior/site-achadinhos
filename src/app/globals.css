@@ -156,3 +156,20 @@ body {
     animation: none;
   }
 }
+
+/* Pulse sutil no CTA principal (botão "Entrar no grupo") — um brilho
+   verde que respira bem devagar, não um "bump" de escala (mais
+   discreto e não briga com o active:scale do clique). */
+@keyframes cta-pulse-glow {
+  0%, 100% { box-shadow: 0 10px 30px -8px rgba(37, 211, 102, 0.55), 0 0 0 0 rgba(37, 211, 102, 0.45); }
+  50% { box-shadow: 0 10px 30px -8px rgba(37, 211, 102, 0.7), 0 0 0 10px rgba(37, 211, 102, 0); }
+}
+.cta-pulse {
+  animation: cta-pulse-glow 2.6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cta-pulse {
+    animation: none;
+    box-shadow: 0 10px 30px -8px rgba(37, 211, 102, 0.6);
+  }
+}
