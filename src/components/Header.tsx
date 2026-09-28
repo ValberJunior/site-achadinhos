@@ -17,7 +17,7 @@ export function Header() {
             />
           </span>
           <span className="font-handwritten text-3xl leading-none text-gold-dark sm:text-4xl">
-            Listinha da Bru ❤️
+            Listinha da Bru <span className="text-lg sm:text-xl">❤️</span>
           </span>
         </Link>
       </div>
