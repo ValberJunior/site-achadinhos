@@ -70,17 +70,18 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* onda emendando direto no rodapé (preenchimento preto = mesma
-          cor de fundo do Footer, sem espaço entre um e outro) */}
+      {/* onda branca subindo bem alto do lado direito (perto da foto da
+          Bru) e mais baixa do lado esquerdo (perto do texto) — emenda
+          direto no rodapé preto logo abaixo, sem espaço entre os dois */}
       <svg
-        viewBox="0 0 1440 100"
+        viewBox="0 0 1440 320"
         preserveAspectRatio="none"
         aria-hidden
-        className="relative block h-16 w-full sm:h-24"
+        className="relative -mt-16 block h-48 w-full sm:-mt-24 sm:h-72"
       >
         <path
-          fill="#000000"
-          d="M0,40 C 240,90 480,0 720,30 C 960,60 1200,90 1440,40 L1440,100 L0,100 Z"
+          fill="#ffffff"
+          d="M0,190 C 180,260 360,150 560,140 C 760,130 860,30 1040,25 C 1220,20 1340,120 1440,150 L1440,320 L0,320 Z"
         />
       </svg>
     </div>
