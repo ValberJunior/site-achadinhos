@@ -70,18 +70,18 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* onda branca subindo bem alto do lado direito (perto da foto da
-          Bru) e mais baixa do lado esquerdo (perto do texto) — emenda
-          direto no rodapé preto logo abaixo, sem espaço entre os dois */}
+      {/* onda branca única e suave — leve assimetria (um pouco mais alta
+          perto da foto da Bru, à direita), sem picos múltiplos nem
+          amplitude exagerada, emendando direto no rodapé preto abaixo */}
       <svg
-        viewBox="0 0 1440 320"
+        viewBox="0 0 1440 200"
         preserveAspectRatio="none"
         aria-hidden
-        className="relative -mt-16 block h-48 w-full sm:-mt-24 sm:h-72"
+        className="relative block h-16 w-full sm:h-24"
       >
         <path
           fill="#ffffff"
-          d="M0,190 C 180,260 360,150 560,140 C 760,130 860,30 1040,25 C 1220,20 1340,120 1440,150 L1440,320 L0,320 Z"
+          d="M0,140 C 420,190 980,80 1440,115 L1440,200 L0,200 Z"
         />
       </svg>
     </div>
