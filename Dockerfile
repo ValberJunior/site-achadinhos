@@ -11,6 +11,12 @@ FROM node:22-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+# NEXT_PUBLIC_* é inlinado pelo Next no bundle do client durante o build,
+# não em runtime — por isso precisa chegar como build-arg (via GitHub
+# Actions --build-arg, lendo de um Secret), não só como env do container
+# rodando depois. Sem valor, cai no fallback já hardcoded em page.tsx.
+ARG NEXT_PUBLIC_WHATSAPP_GROUP_URL
+ENV NEXT_PUBLIC_WHATSAPP_GROUP_URL=${NEXT_PUBLIC_WHATSAPP_GROUP_URL}
 # DATABASE_URL real só é necessário em runtime (leitura de dados), não em
 # build time — build não faz nenhuma query, generateStaticParams só lista
 # os 3 slugs fixos de niches.ts.
