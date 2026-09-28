@@ -21,6 +21,8 @@ export interface WhatsappGroup {
   name: string;
   invite_link: string;
   member_count: number | null;
+  max_members: number;
+  group_jid: string | null;
   status: string;
 }
 

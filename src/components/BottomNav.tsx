@@ -7,7 +7,6 @@ const TABS = [
   { href: "/", emoji: "🏡", label: "Início" },
   { href: "/nicho/casa-mesa-banho", emoji: "🔍", label: "Categorias" },
   { href: "/#favoritos", emoji: "🤍", label: "Salvos" },
-  { href: "/#newsletter", emoji: "💬", label: "Grupos" },
 ] as const;
 
 // Bottom tab bar fixo — é o que dá a sensação de "app" (Shopee/Mercado
@@ -44,6 +43,22 @@ export function BottomNav() {
             </Link>
           );
         })}
+
+        {/* Não é navegação de página — abre o JoinGroupPopup (ver
+            layout.tsx) via evento global, então é um <button>, não <Link>. */}
+        <button
+          type="button"
+          onClick={() => window.dispatchEvent(new Event("open-join-popup"))}
+          className="flex flex-1 flex-col items-center gap-0.5 py-2 text-[11px]"
+        >
+          <span
+            className="flex h-7 w-9 items-center justify-center rounded-full text-lg opacity-60"
+            aria-hidden
+          >
+            💬
+          </span>
+          <span className="font-medium text-foreground/60">Grupos</span>
+        </button>
       </div>
     </nav>
   );

@@ -34,9 +34,9 @@ export const FIXTURE_COUPONS: FixtureCoupon[] = [
 ];
 
 export const FIXTURE_GROUPS: (WhatsappGroup & { niche_key: NicheKey })[] = [
-  { id: 1, niche_id: 1, niche_key: "casa_mesa_banho", name: "Achadinhos casa_mesa_banho #1", invite_link: "https://chat.whatsapp.com/TESTE_casa_mesa_banho", member_count: 350, status: "active" },
-  { id: 2, niche_id: 2, niche_key: "infantil", name: "Achadinhos infantil #1", invite_link: "https://chat.whatsapp.com/TESTE_infantil", member_count: 350, status: "active" },
-  { id: 3, niche_id: 3, niche_key: "eletronicos", name: "Achadinhos eletronicos #1", invite_link: "https://chat.whatsapp.com/TESTE_eletronicos", member_count: 350, status: "active" },
+  { id: 1, niche_id: 1, niche_key: "casa_mesa_banho", name: "Achadinhos casa_mesa_banho #1", invite_link: "https://chat.whatsapp.com/TESTE_casa_mesa_banho", member_count: 350, max_members: 950, group_jid: null, status: "active" },
+  { id: 2, niche_id: 2, niche_key: "infantil", name: "Achadinhos infantil #1", invite_link: "https://chat.whatsapp.com/TESTE_infantil", member_count: 350, max_members: 950, group_jid: null, status: "active" },
+  { id: 3, niche_id: 3, niche_key: "eletronicos", name: "Achadinhos eletronicos #1", invite_link: "https://chat.whatsapp.com/TESTE_eletronicos", member_count: 350, max_members: 950, group_jid: null, status: "active" },
 ];
 
 export const usingFixtures = !process.env.DATABASE_URL;

@@ -10,6 +10,15 @@ services:
       DATABASE_URL: "postgres://nutra_admin:${POSTGRES_PASSWORD}@nutra_postgres:5432/nutra_usa"
       NEXT_PUBLIC_SITE_URL: "https://achadinhos.SEU_DOMINIO.com.br"
       NEXT_PUBLIC_FB_PIXEL_ID: "${FB_PIXEL_ID}"
+      # Mesma instância Evolution API já usada no resto do projeto — troque
+      # os nomes das vars pelos que já existem no .env compartilhado da VPS
+      # se forem diferentes desses.
+      EVOLUTION_API_URL: "${EVOLUTION_API_URL}"
+      EVOLUTION_API_KEY: "${EVOLUTION_API_KEY}"
+      EVOLUTION_INSTANCE: "${EVOLUTION_INSTANCE}"
+      EVOLUTION_ADMIN_PHONE: "${EVOLUTION_ADMIN_PHONE}"
+      EVOLUTION_WEBHOOK_SECRET: "${EVOLUTION_WEBHOOK_SECRET}"
+      NEXT_PUBLIC_WHATSAPP_GROUP_URL: "${NEXT_PUBLIC_WHATSAPP_GROUP_URL}"
     ports:
       - "3000:3000" # ou só exponha via rede interna se já tiver reverse proxy (nginx/traefik/caddy)
     networks:
