@@ -70,20 +70,20 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* onda branca única e suave — leve assimetria (um pouco mais alta
-          perto da foto da Bru, à direita), sem picos múltiplos nem
-          amplitude exagerada. margin-bottom negativa pra "morder" o
-          rodapé por baixo e não deixar nenhuma linha/seam visível na
+      {/* onda branca mais alta e com duas ondulações (dois vales/cristas)
+          em vez de uma curva única — ainda suave, sem virar tsunami de
+          novo, só com mais presença. margin-bottom negativa pra "morder"
+          o rodapé por baixo e não deixar nenhuma linha/seam visível na
           emenda entre a onda e o rodapé branco. */}
       <svg
-        viewBox="0 0 1440 200"
+        viewBox="0 0 1440 300"
         preserveAspectRatio="none"
         aria-hidden
-        className="relative -mb-[10px] block h-16 w-full sm:h-24"
+        className="relative -mb-[10px] block h-28 w-full sm:h-40"
       >
         <path
           fill="#ffffff"
-          d="M0,140 C 420,190 980,80 1440,115 L1440,200 L0,200 Z"
+          d="M0,170 C 240,230 480,90 720,130 C 960,170 1200,50 1440,100 L1440,300 L0,300 Z"
         />
       </svg>
     </div>
