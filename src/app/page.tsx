@@ -31,12 +31,13 @@ export default function HomePage() {
         }}
       />
 
-      <div className="relative mx-auto grid max-w-6xl gap-10 px-6 pt-12 pb-6 sm:px-6 md:grid-cols-2 md:items-center md:gap-14 md:pt-20 md:pb-10">
-        {/* Coluna esquerda: gancho + CTA — no mobile vem DEPOIS da foto
-            (order-2), igual à referência que o Valber mandou (imagem em
-            cima, texto/CTA embaixo). No desktop volta pra ordem normal
-            (texto esquerda, foto direita). */}
-        <div className="order-2 flex flex-col items-center text-center md:order-none md:items-start md:text-left">
+      <div className="relative mx-auto grid max-w-6xl gap-0 px-6 pt-12 pb-0 sm:px-6 md:grid-cols-2 md:items-center md:gap-14 md:pt-20 md:pb-10">
+        {/* Coluna esquerda: gancho + CTA — no mobile vem DEPOIS da foto E da
+            onda (order-3), já em cima de fundo branco (a onda "entrega" pro
+            branco antes do texto começar). No desktop volta pra ordem normal
+            (texto esquerda, foto direita, sem fundo branco próprio — o fundo
+            pêssego com o padrão continua por trás). */}
+        <div className="order-3 -mx-6 bg-white px-6 pt-8 pb-2 flex flex-col items-center text-center md:order-none md:mx-0 md:bg-transparent md:px-0 md:pt-0 md:pb-0 md:items-start md:text-left">
           <p className="text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl">
             Os melhores achadinhos e cupons de verdade, direto no seu WhatsApp
           </p>
@@ -72,18 +73,35 @@ export default function HomePage() {
             className="h-auto max-h-[60vh] w-auto max-w-full object-contain drop-shadow-2xl md:max-h-[70vh]"
           />
         </div>
+
+        {/* Onda só do mobile — vem logo depois da foto (order-2) e entrega
+            pro fundo branco onde o texto/CTA já se apoia. -mx-6 cancela o
+            padding do grid pra ela sangrar de ponta a ponta na tela. Some
+            no desktop (a onda de lá é a de baixo, depois das duas colunas). */}
+        <svg
+          viewBox="0 0 1440 400"
+          preserveAspectRatio="none"
+          aria-hidden
+          className="relative order-2 -mx-6 -mb-1 block h-24 w-[calc(100%+3rem)] md:hidden"
+        >
+          <path
+            fill="#ffffff"
+            d="M0,190 C 160,300 320,140 480,190 C 640,240 800,80 960,130 C 1120,180 1280,220 1440,150 L1440,400 L0,400 Z"
+          />
+        </svg>
       </div>
 
       {/* onda branca mais alta ainda, agora com três ondulações — mais
           movimento visível ao longo da largura toda, mantendo curvas
           suaves (sem virar tsunami). margin-bottom negativa pra "morder"
           o rodapé por baixo e não deixar nenhuma linha/seam visível na
-          emenda entre a onda e o rodapé branco. */}
+          emenda entre a onda e o rodapé branco. Só no desktop — no mobile
+          quem faz essa transição é a onda de cima, entre a foto e o texto. */}
       <svg
         viewBox="0 0 1440 400"
         preserveAspectRatio="none"
         aria-hidden
-        className="relative -mb-[100px] block h-[180px] w-full sm:h-[244px]"
+        className="relative -mb-[100px] hidden h-[244px] w-full md:block"
       >
         <path
           fill="#ffffff"
