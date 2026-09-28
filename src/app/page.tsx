@@ -31,7 +31,7 @@ export default function HomePage() {
         }}
       />
 
-      <div className="relative mx-auto grid max-w-6xl gap-10 px-6 py-12 sm:px-6 md:grid-cols-2 md:items-center md:gap-14 md:py-20">
+      <div className="relative mx-auto grid max-w-6xl gap-10 px-6 pt-12 pb-20 sm:px-6 md:grid-cols-2 md:items-center md:gap-14 md:pt-20 md:pb-28">
         {/* Coluna esquerda: gancho + CTA */}
         <div className="flex flex-col items-center text-center md:items-start md:text-left">
           <p className="text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl">
@@ -69,6 +69,20 @@ export default function HomePage() {
           />
         </div>
       </div>
+
+      {/* onda emendando direto no rodapé (preenchimento preto = mesma
+          cor de fundo do Footer, sem espaço entre um e outro) */}
+      <svg
+        viewBox="0 0 1440 100"
+        preserveAspectRatio="none"
+        aria-hidden
+        className="relative block h-16 w-full sm:h-24"
+      >
+        <path
+          fill="#000000"
+          d="M0,40 C 240,90 480,0 720,30 C 960,60 1200,90 1440,40 L1440,100 L0,100 Z"
+        />
+      </svg>
     </div>
   );
 }
