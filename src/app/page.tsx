@@ -1,12 +1,9 @@
-// Home = página de captura única em cima de uma imagem de fundo (estilo
-// "página de vendas" — headline grande sobre foto, CTA em destaque, lista
-// de bullets com check). O logo fica só no topo, pequeno; quem carrega a
-// identidade visual agora é o background.
-//
-// O arquivo public/assets/background-brunna.png é editado e salvo por
-// fora (Bru cuida da arte) — aqui só referenciamos o caminho. Enquanto o
-// arquivo não existe, o gradiente escuro de fundo (bg-black) já deixa a
-// página apresentável sozinho, sem depender da imagem carregar.
+// Home = página de captura única, estilo "página de vendas" (headline
+// grande, CTA em destaque, lista de bullets com check). O fundo é um
+// mesh de luzes só em CSS (sem foto) — blobs desfocados coloridos que
+// derivam bem devagar (ver .blob-a/b/c e os @keyframes em globals.css),
+// mais uma grade sutil pra dar textura de "produto moderno". O logo fica
+// só no topo, pequeno.
 
 const WHATSAPP_GROUP_URL =
   process.env.NEXT_PUBLIC_WHATSAPP_GROUP_URL || "https://chat.whatsapp.com/SEU_LINK_AQUI";
@@ -34,12 +31,28 @@ const BULLETS = [
 export default function HomePage() {
   return (
     <div className="bg-black">
-      {/* Hero: foto de fundo + headline + CTA */}
-      <div
-        className="relative flex min-h-[100svh] flex-col items-center overflow-hidden bg-black bg-cover bg-center px-6 pt-6 pb-8"
-        style={{ backgroundImage: "url(/assets/background-brunna.png)" }}
-      >
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/75 via-black/35 to-black" />
+      {/* Hero: mesh de luzes em CSS + headline + CTA */}
+      <div className="relative flex min-h-[100svh] flex-col items-center overflow-hidden bg-black px-6 pt-6 pb-8">
+        {/* blobs de luz desfocados, cores da marca (laranja/rosa/verde) */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="blob-a absolute -left-24 -top-24 h-80 w-80 rounded-full bg-[#f0521c] opacity-40 blur-[90px]" />
+          <div className="blob-b absolute -right-20 top-10 h-72 w-72 rounded-full bg-[#ec4899] opacity-30 blur-[90px]" />
+          <div className="blob-c absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-[#25D366] opacity-25 blur-[100px]" />
+        </div>
+
+        {/* grade sutil, some nas bordas */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.15]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.5) 1px, transparent 1px)",
+            backgroundSize: "34px 34px",
+            maskImage: "radial-gradient(ellipse at 50% 35%, black 10%, transparent 70%)",
+            WebkitMaskImage: "radial-gradient(ellipse at 50% 35%, black 10%, transparent 70%)",
+          }}
+        />
+
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black" />
 
         <div className="relative z-10 flex w-full items-center gap-2">
           <span className="h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-white/80 shadow-lg">
