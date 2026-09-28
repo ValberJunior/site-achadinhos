@@ -17,15 +17,20 @@ const WHATSAPP_GROUP_URL =
 
 export default function HomePage() {
   return (
-    <div
-      className="relative overflow-hidden bg-[#fdf1e6]"
-      style={{
-        backgroundImage: "url(/assets/background.jpg)",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
+    <div className="relative overflow-hidden bg-[#fdf1e6]">
+      {/* fundo com opacidade reduzida, numa camada própria — se a
+          opacidade fosse aplicada na section inteira, o texto e a foto
+          por cima também ficariam apagados */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-60"
+        style={{
+          backgroundImage: "url(/assets/background.jpg)",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+
       <div className="relative mx-auto grid max-w-6xl gap-10 px-6 py-12 sm:px-6 md:grid-cols-2 md:items-center md:gap-14 md:py-20">
         {/* Coluna esquerda: gancho + CTA */}
         <div className="flex flex-col items-center text-center md:items-start md:text-left">
