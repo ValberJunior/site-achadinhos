@@ -37,7 +37,7 @@ export default function HomePage() {
             branco antes do texto começar). No desktop volta pra ordem normal
             (texto esquerda, foto direita, sem fundo branco próprio — o fundo
             pêssego com o padrão continua por trás). */}
-        <div className="order-3 -mx-6 bg-white px-6 pt-8 pb-2 flex flex-col items-center text-center md:order-none md:mx-0 md:bg-transparent md:px-0 md:pt-0 md:pb-0 md:items-start md:text-left">
+        <div className="order-3 -mx-6 -mt-4 bg-white px-6 pt-8 pb-[40px] flex flex-col items-center text-center md:order-none md:mx-0 md:mt-0 md:bg-transparent md:px-0 md:pt-0 md:pb-0 md:items-start md:text-left">
           <p className="text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl">
             Os melhores achadinhos e cupons de verdade, direto no seu WhatsApp
           </p>
