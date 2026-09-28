@@ -3,9 +3,8 @@
 // nome da marca já aparece grande no Header global — aqui não repete
 // título, só o gancho + botão.
 //
-// Fundo: public/assets/background.jpg, um padrão (tileável) de ícones
-// de compra/cupom em tom pêssego — repete via CSS (background-repeat),
-// não é uma foto de cena única, por isso não usa cover/center.
+// Fundo: public/assets/background.jpg (ícones de compra/cupom em tom
+// pêssego) — sem repetição, cobrindo a seção inteira (cover/center).
 //
 // public/assets/foto-brunna.png já é um recorte com fundo transparente
 // (PNG com alpha) — por isso a foto entra como <img> solta, sem caixa,
@@ -22,8 +21,9 @@ export default function HomePage() {
       className="relative overflow-hidden bg-[#fdf1e6]"
       style={{
         backgroundImage: "url(/assets/background.jpg)",
-        backgroundRepeat: "repeat",
-        backgroundSize: "420px auto",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <div className="relative mx-auto grid max-w-6xl gap-10 px-6 py-12 sm:px-6 md:grid-cols-2 md:items-center md:gap-14 md:py-20">
