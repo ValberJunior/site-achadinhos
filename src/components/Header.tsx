@@ -16,7 +16,7 @@ export function Header() {
               className="h-full w-full object-cover"
             />
           </span>
-          <span className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
+          <span className="font-handwritten text-4xl leading-none text-gold-dark sm:text-5xl">
             Listinha da Bru
           </span>
         </Link>

@@ -31,7 +31,7 @@ export default function HomePage() {
         }}
       />
 
-      <div className="relative mx-auto grid max-w-6xl gap-10 px-6 pt-12 pb-20 sm:px-6 md:grid-cols-2 md:items-center md:gap-14 md:pt-20 md:pb-28">
+      <div className="relative mx-auto grid max-w-6xl gap-10 px-6 pt-12 pb-6 sm:px-6 md:grid-cols-2 md:items-center md:gap-14 md:pt-20 md:pb-10">
         {/* Coluna esquerda: gancho + CTA */}
         <div className="flex flex-col items-center text-center md:items-start md:text-left">
           <p className="text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl">
