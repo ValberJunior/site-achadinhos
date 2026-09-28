@@ -32,8 +32,11 @@ export default function HomePage() {
       />
 
       <div className="relative mx-auto grid max-w-6xl gap-10 px-6 pt-12 pb-6 sm:px-6 md:grid-cols-2 md:items-center md:gap-14 md:pt-20 md:pb-10">
-        {/* Coluna esquerda: gancho + CTA */}
-        <div className="flex flex-col items-center text-center md:items-start md:text-left">
+        {/* Coluna esquerda: gancho + CTA — no mobile vem DEPOIS da foto
+            (order-2), igual à referência que o Valber mandou (imagem em
+            cima, texto/CTA embaixo). No desktop volta pra ordem normal
+            (texto esquerda, foto direita). */}
+        <div className="order-2 flex flex-col items-center text-center md:order-none md:items-start md:text-left">
           <p className="text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl">
             Os melhores achadinhos e cupons de verdade, direto no seu WhatsApp
           </p>
@@ -59,8 +62,9 @@ export default function HomePage() {
           </a>
         </div>
 
-        {/* Coluna direita: foto da Bru, solta (recorte com fundo transparente) */}
-        <div className="flex justify-center md:justify-end">
+        {/* Coluna direita: foto da Bru, solta (recorte com fundo transparente).
+            order-1 no mobile pra vir ANTES do texto (foto em cima). */}
+        <div className="order-1 flex justify-center md:order-none md:justify-end">
           {/* eslint-disable-next-line @next/next/no-img-element -- recorte PNG estático, sem next/image */}
           <img
             src="/assets/foto-brunna.png"
