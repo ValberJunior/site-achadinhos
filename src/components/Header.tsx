@@ -1,25 +1,25 @@
 import Link from "next/link";
 
+// Header grande de verdade — logo e nome da marca, sem espremer num
+// badge pequeno. É o único lugar onde "Listinha da Bru" aparece como
+// título agora; a home não repete o nome no meio do hero.
 export function Header() {
   return (
-    <header className="sticky top-0 z-20 border-b border-border bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/70">
-      <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-3 sm:px-6">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="h-9 w-9 overflow-hidden rounded-full shadow-sm ring-1 ring-black/5">
+    <header className="border-b border-border bg-surface">
+      <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-4 sm:px-6 sm:py-5">
+        <Link href="/" className="flex items-center gap-3">
+          <span className="h-14 w-14 shrink-0 overflow-hidden rounded-full shadow-md ring-2 ring-white sm:h-16 sm:w-16">
             {/* eslint-disable-next-line @next/next/no-img-element -- logo estática simples */}
             <img
               src="/assets/logo-brunna.png"
-              alt=""
+              alt="Listinha da Bru"
               className="h-full w-full object-cover"
             />
           </span>
-          <span className="font-display text-lg italic text-foreground">
+          <span className="font-display text-2xl italic text-foreground sm:text-3xl">
             Listinha da Bru
           </span>
         </Link>
-        <span className="hidden text-sm font-medium text-foreground/60 sm:block">
-          achadinhos com cupom de verdade
-        </span>
       </div>
     </header>
   );
