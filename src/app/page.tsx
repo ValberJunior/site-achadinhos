@@ -72,12 +72,14 @@ export default function HomePage() {
 
       {/* onda branca única e suave — leve assimetria (um pouco mais alta
           perto da foto da Bru, à direita), sem picos múltiplos nem
-          amplitude exagerada, emendando direto no rodapé preto abaixo */}
+          amplitude exagerada. margin-bottom negativa pra "morder" o
+          rodapé por baixo e não deixar nenhuma linha/seam visível na
+          emenda entre a onda e o rodapé branco. */}
       <svg
         viewBox="0 0 1440 200"
         preserveAspectRatio="none"
         aria-hidden
-        className="relative block h-16 w-full sm:h-24"
+        className="relative -mb-[10px] block h-16 w-full sm:h-24"
       >
         <path
           fill="#ffffff"

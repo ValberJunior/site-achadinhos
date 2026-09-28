@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="mt-0 border-t border-border bg-white px-4 py-6 pb-10 text-sm text-foreground/60 sm:px-6">
+    <footer className="mt-0 bg-white px-4 py-6 pb-10 text-sm text-foreground/60 sm:px-6">
       <div className="mx-auto max-w-3xl">
         <p>
           Listinha da Bru reúne achadinhos e cupons ativos que a gente mesmo
