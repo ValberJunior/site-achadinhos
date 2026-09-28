@@ -1,28 +1,31 @@
 // Home = hero de captura em duas colunas: texto + CTA na esquerda, foto
 // da Bru na direita (empilha no mobile: texto em cima, foto embaixo). O
 // nome da marca já aparece grande no Header global — aqui não repete
-// título, só o gancho + botão. Fundo claro e quente (tons da marca:
-// laranja/pêssego), nada de tema escuro.
+// título, só o gancho + botão.
+//
+// Fundo: public/assets/background.jpg, um padrão (tileável) de ícones
+// de compra/cupom em tom pêssego — repete via CSS (background-repeat),
+// não é uma foto de cena única, por isso não usa cover/center.
 //
 // public/assets/foto-brunna.png já é um recorte com fundo transparente
 // (PNG com alpha) — por isso a foto entra como <img> solta, sem caixa,
 // sem aspect-ratio fixo e sem cortar nada: ela "flutua" livre por cima
-// do degradê da página, do jeito que apareceria numa arte editada à
-// mão. Nada de rounded/overflow-hidden aqui, isso é que prendia ela
-// numa caixa antes.
+// do fundo, do jeito que apareceria numa arte editada à mão. Nada de
+// rounded/overflow-hidden aqui, isso é que prendia ela numa caixa antes.
 
 const WHATSAPP_GROUP_URL =
   process.env.NEXT_PUBLIC_WHATSAPP_GROUP_URL || "https://chat.whatsapp.com/SEU_LINK_AQUI";
 
 export default function HomePage() {
   return (
-    <div className="relative overflow-hidden bg-gradient-to-br from-[#fff3e8] via-[#ffe6d2] to-[#ffd9bd]">
-      {/* manchas de cor bem suaves, só pra dar um toque "moderno" sem pesar */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="blob-a absolute -left-24 -top-24 h-80 w-80 rounded-full bg-[#f0521c] opacity-[0.12] blur-[90px]" />
-        <div className="blob-b absolute -right-24 top-1/3 h-72 w-72 rounded-full bg-[#ec4899] opacity-[0.10] blur-[90px]" />
-      </div>
-
+    <div
+      className="relative overflow-hidden bg-[#fdf1e6]"
+      style={{
+        backgroundImage: "url(/assets/background.jpg)",
+        backgroundRepeat: "repeat",
+        backgroundSize: "420px auto",
+      }}
+    >
       <div className="relative mx-auto grid max-w-6xl gap-10 px-6 py-12 sm:px-6 md:grid-cols-2 md:items-center md:gap-14 md:py-20">
         {/* Coluna esquerda: gancho + CTA */}
         <div className="flex flex-col items-center text-center md:items-start md:text-left">
