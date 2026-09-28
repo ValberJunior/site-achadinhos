@@ -4,9 +4,12 @@
 // título, só o gancho + botão. Fundo claro e quente (tons da marca:
 // laranja/pêssego), nada de tema escuro.
 //
-// public/assets/foto-brunna.png ainda não existe (a Bru vai editar e
-// salvar por fora) — enquanto não existir, o card da direita mostra só
-// o gradiente de fundo, sem quebrar layout.
+// public/assets/foto-brunna.png já é um recorte com fundo transparente
+// (PNG com alpha) — por isso a foto entra como <img> solta, sem caixa,
+// sem aspect-ratio fixo e sem cortar nada: ela "flutua" livre por cima
+// do degradê da página, do jeito que apareceria numa arte editada à
+// mão. Nada de rounded/overflow-hidden aqui, isso é que prendia ela
+// numa caixa antes.
 
 const WHATSAPP_GROUP_URL =
   process.env.NEXT_PUBLIC_WHATSAPP_GROUP_URL || "https://chat.whatsapp.com/SEU_LINK_AQUI";
@@ -41,15 +44,13 @@ export default function HomePage() {
           </a>
         </div>
 
-        {/* Coluna direita: foto da Bru */}
+        {/* Coluna direita: foto da Bru, solta (recorte com fundo transparente) */}
         <div className="flex justify-center md:justify-end">
-          <div
-            className="aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#ffb88c] to-[#f0521c] shadow-xl"
-            style={{
-              backgroundImage: "url(/assets/foto-brunna.png)",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
+          {/* eslint-disable-next-line @next/next/no-img-element -- recorte PNG estático, sem next/image */}
+          <img
+            src="/assets/foto-brunna.png"
+            alt="Bru"
+            className="h-auto max-h-[60vh] w-auto max-w-full object-contain drop-shadow-2xl md:max-h-[70vh]"
           />
         </div>
       </div>
