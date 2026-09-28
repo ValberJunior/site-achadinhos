@@ -12,7 +12,7 @@ export function Header() {
             🛍️
           </span>
           <span className="text-lg font-extrabold tracking-tight">
-            Minha Listinha
+            Listinha da Bru
           </span>
         </Link>
         <span className="hidden text-sm font-medium text-foreground/60 sm:block">

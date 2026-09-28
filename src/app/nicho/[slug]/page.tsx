@@ -28,7 +28,7 @@ export async function generateMetadata({
     description: niche.description,
     alternates: { canonical: `/nicho/${niche.slug}` },
     openGraph: {
-      title: `${niche.label} — Minha Listinha`,
+      title: `${niche.label} — Listinha da Bru`,
       description: niche.description,
     },
   };

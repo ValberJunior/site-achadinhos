@@ -3,6 +3,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { BottomNav } from "@/components/BottomNav";
+import { JoinGroupPopup } from "@/components/JoinGroupPopup";
 import FacebookPixel from "@/components/FacebookPixel";
 
 // Propositalmente SEM next/font/google: usar a stack de fontes do sistema
@@ -15,15 +16,15 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Minha Listinha — achadinhos e cupons com desconto real",
-    template: "%s — Minha Listinha",
+    default: "Listinha da Bru — achadinhos e cupons com desconto real",
+    template: "%s — Listinha da Bru",
   },
   description:
-    "Achadinhos selecionados por nicho com cupom ativo e link de afiliado direto — casa, infantil e eletrônicos, sempre atualizado.",
+    "Achadinhos selecionados por dia com cupom ativo e link direto — casa, maternidade, festa e presentes, direto no grupo do WhatsApp.",
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    siteName: "Minha Listinha",
+    siteName: "Listinha da Bru",
   },
   robots: {
     index: true,
@@ -51,10 +52,10 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Minha Listinha",
+              name: "Listinha da Bru",
               url: siteUrl,
               description:
-                "Catálogo de achadinhos e cupons de desconto ativos, organizados por nicho.",
+                "Catálogo de achadinhos e cupons de desconto ativos, com entrada direta pelo grupo do WhatsApp.",
             }),
           }}
         />
@@ -62,6 +63,7 @@ export default function RootLayout({
         <main className="min-h-[60vh] pb-16">{children}</main>
         <Footer />
         <BottomNav />
+        <JoinGroupPopup />
         <FacebookPixel />
       </body>
     </html>

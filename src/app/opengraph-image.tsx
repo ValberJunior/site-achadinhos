@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Minha Listinha — achadinhos e cupons com desconto real";
+export const alt = "Listinha da Bru — achadinhos e cupons com desconto real";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -36,7 +36,7 @@ export default async function Image() {
           ML
         </div>
         <div style={{ fontSize: 72, fontWeight: 700, marginTop: 16, display: "flex" }}>
-          Minha Listinha
+          Listinha da Bru
         </div>
         <div style={{ fontSize: 34, marginTop: 20, opacity: 0.92, display: "flex" }}>
           achadinhos e cupons com desconto real

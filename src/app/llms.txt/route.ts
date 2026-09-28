@@ -8,7 +8,7 @@ export async function GET() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
   const lines = [
-    "# Minha Listinha",
+    "# Listinha da Bru",
     "",
     "> Catálogo de achadinhos e cupons de desconto ativos em marketplaces brasileiros (Shopee), organizados por nicho. Os preços, descontos e links de afiliado são atualizados continuamente — sempre confirme o valor final na página de destino antes de comprar.",
     "",
