@@ -22,7 +22,7 @@ export default function HomePage() {
           opacidade fosse aplicada na section inteira, o texto e a foto
           por cima também ficariam apagados */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-60"
+        className="pointer-events-none absolute inset-0 opacity-50"
         style={{
           backgroundImage: "url(/assets/background.jpg)",
           backgroundRepeat: "no-repeat",
