@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { BottomNav } from "@/components/BottomNav";
-import { JoinGroupPopup } from "@/components/JoinGroupPopup";
 import FacebookPixel from "@/components/FacebookPixel";
+
+// Header, BottomNav e JoinGroupPopup (navegação por nicho + popup de
+// entrada por nicho) saíram do layout global: a home agora é uma página
+// de captura única, sem menu fixo nem popup de escolha de nicho — só o
+// CTA "ENTRAR NO GRUPO". Os componentes continuam existindo (usados por
+// /nicho/[slug], que não mudou) e o Header pode voltar se algum dia a
+// navegação por nicho for reintroduzida na home.
 
 // Propositalmente SEM next/font/google: usar a stack de fontes do sistema
 // evita qualquer requisição externa de fonte (zero-CLS, zero round-trip),
@@ -59,11 +63,8 @@ export default function RootLayout({
             }),
           }}
         />
-        <Header />
-        <main className="min-h-[60vh] pb-16">{children}</main>
+        <main className="min-h-[60vh]">{children}</main>
         <Footer />
-        <BottomNav />
-        <JoinGroupPopup />
         <FacebookPixel />
       </body>
     </html>
