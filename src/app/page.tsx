@@ -70,20 +70,20 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* onda branca mais alta e com duas ondulações (dois vales/cristas)
-          em vez de uma curva única — ainda suave, sem virar tsunami de
-          novo, só com mais presença. margin-bottom negativa pra "morder"
+      {/* onda branca mais alta ainda, agora com três ondulações — mais
+          movimento visível ao longo da largura toda, mantendo curvas
+          suaves (sem virar tsunami). margin-bottom negativa pra "morder"
           o rodapé por baixo e não deixar nenhuma linha/seam visível na
           emenda entre a onda e o rodapé branco. */}
       <svg
-        viewBox="0 0 1440 300"
+        viewBox="0 0 1440 400"
         preserveAspectRatio="none"
         aria-hidden
-        className="relative -mb-[10px] block h-28 w-full sm:h-40"
+        className="relative -mb-[10px] block h-40 w-full sm:h-56"
       >
         <path
           fill="#ffffff"
-          d="M0,170 C 240,230 480,90 720,130 C 960,170 1200,50 1440,100 L1440,300 L0,300 Z"
+          d="M0,190 C 160,300 320,140 480,190 C 640,240 800,80 960,130 C 1120,180 1280,220 1440,150 L1440,400 L0,400 Z"
         />
       </svg>
     </div>
