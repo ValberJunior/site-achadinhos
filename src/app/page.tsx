@@ -37,7 +37,7 @@ export default function HomePage() {
             branco antes do texto começar). No desktop volta pra ordem normal
             (texto esquerda, foto direita, sem fundo branco próprio — o fundo
             pêssego com o padrão continua por trás). */}
-        <div className="order-3 -mx-6 -mt-[5px] bg-white px-6 pt-8 pb-[40px] flex flex-col items-center text-center md:order-none md:mx-0 md:mt-0 md:bg-transparent md:px-0 md:pt-0 md:pb-0 md:items-start md:text-left">
+        <div className="order-3 relative z-20 -mx-6 -mt-[5px] bg-white px-6 pt-8 pb-[40px] flex flex-col items-center text-center md:order-none md:z-auto md:mx-0 md:mt-0 md:bg-transparent md:px-0 md:pt-0 md:pb-0 md:items-start md:text-left">
           <p className="text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl">
             Os melhores achadinhos e cupons de verdade, direto no seu WhatsApp
           </p>
@@ -65,7 +65,7 @@ export default function HomePage() {
 
         {/* Coluna direita: foto da Bru, solta (recorte com fundo transparente).
             order-1 no mobile pra vir ANTES do texto (foto em cima). */}
-        <div className="order-1 flex justify-center md:order-none md:justify-end">
+        <div className="order-1 relative z-0 flex justify-center md:order-none md:z-auto md:justify-end">
           {/* eslint-disable-next-line @next/next/no-img-element -- recorte PNG estático, sem next/image */}
           <img
             src="/assets/foto-brunna.png"
@@ -82,7 +82,7 @@ export default function HomePage() {
           viewBox="0 0 1440 400"
           preserveAspectRatio="none"
           aria-hidden
-          className="relative order-2 -mx-6 -mb-1 -mt-[45px] block h-24 w-[calc(100%+3rem)] md:hidden"
+          className="relative z-10 order-2 -mx-6 -mb-1 -mt-[45px] block h-24 w-[calc(100%+3rem)] md:hidden"
         >
           <path
             fill="#ffffff"
