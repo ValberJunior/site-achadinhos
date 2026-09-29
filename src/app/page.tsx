@@ -104,7 +104,7 @@ export default function HomePage() {
         viewBox="0 0 1440 400"
         preserveAspectRatio="none"
         aria-hidden
-        className="relative -mt-[220px] hidden h-[244px] w-full md:block"
+        className="relative -mt-[220px] hidden h-[130px] w-full md:block"
       >
         <path
           fill="#ffffff"
