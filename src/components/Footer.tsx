@@ -9,10 +9,10 @@ export function Footer() {
           separa e testa — os preços e descontos mudam o tempo todo, então o
           link de compra sempre confirma o valor final antes de fechar.
         </p>
-        <p className="mt-4 text-xs">
-          © {currentYear} Desenvolvido por Valber Junior | Todos os direitos reservados
-        </p>
       </div>
+      <p className="mt-4 w-full text-center text-xs" style={{ color: "#8a6a1f" }}>
+        © {currentYear} Desenvolvido por Valber Junior | Todos os direitos reservados
+      </p>
     </footer>
   );
 }
