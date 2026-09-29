@@ -26,7 +26,7 @@ export function Header() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Instagram da Listinha da Bru"
-          className="shrink-0 text-gold-dark transition-opacity hover:opacity-70"
+          className="shrink-0 transition-opacity hover:opacity-70" style={{ color: "#c9992e" }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
