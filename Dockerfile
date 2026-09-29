@@ -17,6 +17,10 @@ COPY . .
 # rodando depois. Sem valor, cai no fallback já hardcoded em page.tsx.
 ARG NEXT_PUBLIC_WHATSAPP_GROUP_URL
 ENV NEXT_PUBLIC_WHATSAPP_GROUP_URL=${NEXT_PUBLIC_WHATSAPP_GROUP_URL}
+ARG NEXT_PUBLIC_SITE_URL
+ENV NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
+ARG NEXT_PUBLIC_FB_PIXEL_ID
+ENV NEXT_PUBLIC_FB_PIXEL_ID=${NEXT_PUBLIC_FB_PIXEL_ID}
 # DATABASE_URL real só é necessário em runtime (leitura de dados), não em
 # build time — build não faz nenhuma query, generateStaticParams só lista
 # os 3 slugs fixos de niches.ts.

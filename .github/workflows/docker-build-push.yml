@@ -4,14 +4,21 @@ name: Build and push Docker image
 # na main (ou manualmente via "Run workflow"). Precisa dos seguintes
 # Secrets configurados em Settings > Secrets and variables > Actions:
 #
-#   DOCKERHUB_USERNAME               seu usuário do DockerHub
-#   DOCKERHUB_TOKEN                  access token do DockerHub (não a senha —
-#                                     gerar em hub.docker.com > Account Settings
-#                                     > Security > New Access Token)
-#   DOCKERHUB_IMAGE                  nome da imagem, ex: valberjr/site-achadinhos
-#   NEXT_PUBLIC_WHATSAPP_GROUP_URL   (opcional) link do grupo do WhatsApp;
-#                                     inlinado no build do Next — se não
-#                                     configurar, usa o fallback do código
+#   DOCKER_USERNAME                   seu usuário do DockerHub
+#   DOCKER_PASSWORD                   access token do DockerHub (não a senha —
+#                                      gerar em hub.docker.com > Account Settings
+#                                      > Security > New Access Token)
+#   NEXT_PUBLIC_SITE_URL              (opcional) URL pública do site
+#   NEXT_PUBLIC_FB_PIXEL_ID           (opcional) ID do Facebook Pixel
+#   NEXT_PUBLIC_WHATSAPP_GROUP_URL    (opcional) link do grupo do WhatsApp
+#
+# Esses 3 NEXT_PUBLIC_* são inlinados no bundle do client durante o build
+# (Next.js exige isso, não dá pra ler em runtime) — se não configurar,
+# cai no fallback já hardcoded no código. As demais envs do projeto
+# (DATABASE_URL, EVOLUTION_*) são só de runtime do container na VPS —
+# não entram aqui, vão direto no docker-compose/.env de lá.
+#
+# Nome da imagem publicada: <DOCKER_USERNAME>/site-achadinhos
 
 on:
   push:
@@ -31,8 +38,8 @@ jobs:
       - name: Log in to DockerHub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push
         uses: docker/build-push-action@v5
@@ -41,8 +48,10 @@ jobs:
           push: true
           build-args: |
             NEXT_PUBLIC_WHATSAPP_GROUP_URL=${{ secrets.NEXT_PUBLIC_WHATSAPP_GROUP_URL }}
+            NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }}
+            NEXT_PUBLIC_FB_PIXEL_ID=${{ secrets.NEXT_PUBLIC_FB_PIXEL_ID }}
           tags: |
-            ${{ secrets.DOCKERHUB_IMAGE }}:latest
-            ${{ secrets.DOCKERHUB_IMAGE }}:${{ github.sha }}
+            ${{ secrets.DOCKER_USERNAME }}/site-achadinhos:latest
+            ${{ secrets.DOCKER_USERNAME }}/site-achadinhos:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
