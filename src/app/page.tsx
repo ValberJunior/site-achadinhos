@@ -104,13 +104,26 @@ export default function HomePage() {
         viewBox="0 0 1440 400"
         preserveAspectRatio="none"
         aria-hidden
-        className="relative -mt-[220px] -mb-1 hidden h-[244px] w-full md:block"
+        className="relative -mt-[220px] hidden h-[244px] w-full md:block"
       >
         <path
           fill="#ffffff"
           d="M0,190 C 160,300 320,140 480,190 C 640,240 800,80 960,130 C 1120,180 1280,220 1440,150 L1440,400 L0,400 Z"
         />
       </svg>
+
+      {/* Selos de garantia — seção colada direto entre a wave e o Footer
+          (mesmo branco dos dois, sem respiro entre eles), só com padding
+          vertical interno pra dar folga ao redor do selo, que fica
+          centralizado. PNG já vem com fundo transparente. */}
+      <div className="relative bg-white py-8">
+        {/* eslint-disable-next-line @next/next/no-img-element -- selo estático, sem next/image */}
+        <img
+          src="/assets/selos-garantia.png"
+          alt="Compra segura Shopee"
+          className="mx-auto h-auto w-full max-w-[280px] sm:max-w-xs"
+        />
+      </div>
     </div>
   );
 }
