@@ -116,7 +116,7 @@ export default function HomePage() {
           (mesmo branco dos dois, sem respiro entre eles), só com padding
           vertical interno pra dar folga ao redor do selo, que fica
           centralizado. PNG já vem com fundo transparente. */}
-      <div className="relative bg-white py-8">
+      <div className="relative bg-white py-8 md:-mt-20">
         {/* eslint-disable-next-line @next/next/no-img-element -- selo estático, sem next/image */}
         <img
           src="/assets/selos-garantia.png"
