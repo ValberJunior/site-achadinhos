@@ -104,7 +104,7 @@ export default function HomePage() {
         viewBox="0 0 1440 400"
         preserveAspectRatio="none"
         aria-hidden
-        className="relative -mt-[220px] hidden h-[130px] w-full md:block"
+        className="relative -mt-[140px] hidden h-[160px] w-full md:block"
       >
         <path
           fill="#ffffff"
@@ -121,7 +121,7 @@ export default function HomePage() {
         <img
           src="/assets/selos-garantia.png"
           alt="Compra segura Shopee"
-          className="mx-auto h-auto w-full max-w-[280px] sm:max-w-xs"
+          className="mx-auto h-auto w-full max-w-[320px] sm:max-w-md md:max-w-xl"
         />
       </div>
     </div>
