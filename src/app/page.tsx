@@ -36,12 +36,15 @@ export default function HomePage() {
             onda (order-3), já em cima de fundo branco (a onda "entrega" pro
             branco antes do texto começar). No desktop volta pra ordem normal
             (texto esquerda, foto direita, sem fundo branco próprio — o fundo
-            pêssego com o padrão continua por trás). */}
-        <div className="order-3 relative z-20 -mx-6 -mt-[5px] bg-white px-6 pt-8 pb-[40px] flex flex-col items-center text-center md:order-none md:z-auto md:mx-0 md:mt-0 md:bg-transparent md:px-0 md:pt-0 md:pb-0 md:items-start md:text-left">
+            pêssego com o padrão continua por trás). Dentro desse bloco, no
+            mobile o botão do WhatsApp vem ANTES do parágrafo de apoio
+            (order-2/order-3) — no desktop a ordem volta ao normal (parágrafo
+            antes do botão) via md:order-none nos dois. */}
+        <div className="order-3 relative z-20 -mx-6 -mt-[5px] bg-white px-6 pt-5 pb-[40px] flex flex-col items-center text-center md:order-none md:z-auto md:mx-0 md:mt-0 md:bg-transparent md:px-0 md:pt-0 md:pb-0 md:items-start md:text-left">
           <p className="text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl">
             Os melhores achadinhos e cupons de verdade, direto no seu WhatsApp
           </p>
-          <p className="mt-4 max-w-md text-base leading-relaxed text-foreground/70">
+          <p className="order-3 mt-4 max-w-md text-base leading-relaxed text-foreground/70 md:order-none">
             Casa, decoração, maternidade, festa e presentes — cupom ativo e
             link direto todo santo dia, sem enrolação.
           </p>
@@ -50,7 +53,7 @@ export default function HomePage() {
             href={WHATSAPP_GROUP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="cta-pulse mt-7 flex w-full max-w-xs items-center justify-center gap-2.5 rounded-full bg-[#25D366] py-4 text-lg font-extrabold uppercase tracking-wide text-white transition-transform active:scale-[0.98]"
+            className="cta-pulse order-2 mt-7 flex w-full max-w-xs items-center justify-center gap-2.5 rounded-full bg-[#25D366] py-4 text-lg font-extrabold uppercase tracking-wide text-white transition-transform active:scale-[0.98] md:order-none"
           >
             <svg
               viewBox="0 0 24 24"
@@ -91,17 +94,17 @@ export default function HomePage() {
         </svg>
       </div>
 
-      {/* onda branca mais alta ainda, agora com três ondulações — mais
-          movimento visível ao longo da largura toda, mantendo curvas
-          suaves (sem virar tsunami). margin-bottom negativa pra "morder"
-          o rodapé por baixo e não deixar nenhuma linha/seam visível na
-          emenda entre a onda e o rodapé branco. Só no desktop — no mobile
-          quem faz essa transição é a onda de cima, entre a foto e o texto. */}
+      {/* onda branca do desktop — subida com margin-top negativo pra
+          "morder" a parte de baixo da foto/coluna de texto, em vez de só
+          encostar embaixo de tudo. margin-bottom negativa continua morden-
+          do o rodapé por baixo, sem seam visível na emenda. Só no desktop —
+          no mobile quem faz essa transição é a onda de cima, entre a foto
+          e o texto. */}
       <svg
         viewBox="0 0 1440 400"
         preserveAspectRatio="none"
         aria-hidden
-        className="relative -mb-[100px] hidden h-[244px] w-full md:block"
+        className="relative -mt-[220px] -mb-1 hidden h-[244px] w-full md:block"
       >
         <path
           fill="#ffffff"
