@@ -93,44 +93,49 @@ export async function getActiveCouponsCount(): Promise<number> {
   return Number(rows[0]?.count ?? 0);
 }
 
-// --- Fluxo de auto-entrada em grupo (popup de nicho → WhatsApp) ---------
+// --- Fluxo de auto-entrada em grupo (botão "Entrar no grupo" → WhatsApp) -
 // Ver create_group_join_intents.sql pro porquê da correlação por janela de
 // tempo (o WhatsApp não avisa o site de quem clicou, só de quem entrou).
+//
+// Nicho NÃO entra mais nessa escolha (27/09→02/10/2026: o dashboard parou
+// de exigir nicho na criação de grupo, todo grupo novo nasce genérico,
+// niche_id NULL) — existe um único pool de grupos ativos, sem distinção.
+// Ver make_group_join_intents_niche_optional.sql pro ajuste de schema que
+// isso exigiu. getActiveGroupByNicheKey (usada nas páginas /nicho/[slug])
+// continua por nicho e pode ficar desatualizada pra grupos criados depois
+// dessa mudança — fora do escopo desse ajuste, revisar se virar problema.
 
 export interface ReservedGroup {
   inviteLink: string;
   intentId: number;
 }
 
-// Acha um grupo ativo do nicho com vaga (member_count < max_members, ver
-// alter_whatsapp_groups_capacity.sql pro porquê de 950 e não 1024) e grava
-// uma "intenção de entrada" — se não tiver vaga em nenhum, cria um grupo
-// novo pelo Evolution API antes.
+// Acha um grupo ativo com vaga (member_count < max_members, ver
+// alter_whatsapp_groups_capacity.sql pro porquê de 950 e não 1024) — o de
+// menor member_count primeiro, ou seja enche o mais antigo/#1 antes de
+// passar pro próximo — e grava uma "intenção de entrada". Se não tiver
+// vaga em nenhum, cria um grupo novo pelo Evolution API antes.
+//
+// Propositalmente SEM checar telefone/membro existente antes de redirecionar
+// — isso exigiria pedir o telefone na hora do clique, que é fricção que não
+// queremos no fluxo (decisão de 02/10/2026). O best-effort de identidade
+// continua só pós-fato, via matchGroupJoin (webhook).
 //
 // SELECT ... FOR UPDATE trava a linha do grupo escolhido até o fim da
 // transação: evita duas requisições concorrentes decidirem "esse grupo
 // ainda tem vaga" ao mesmo tempo e as duas mandarem gente pro mesmo grupo
 // já cheio.
-export async function reserveGroupSlot(
-  nicheKey: NicheKey,
-  sourcePath: string
-): Promise<ReservedGroup> {
+export async function reserveGroupSlot(sourcePath: string): Promise<ReservedGroup> {
   if (usingFixtures) {
-    const group = FIXTURE_GROUPS.find((g) => g.niche_key === nicheKey);
-    if (!group) throw new Error(`Sem grupo fixture pro nicho ${nicheKey}`);
+    const group = FIXTURE_GROUPS[0];
+    if (!group) throw new Error("Sem grupo fixture configurado");
     return { inviteLink: group.invite_link, intentId: 0 };
   }
 
   return sql.begin(async (tx) => {
-    const [niche] = await tx<{ id: number; label: string }[]>`
-      SELECT id, name AS label FROM niches WHERE name = ${nicheKey}
-    `;
-    if (!niche) throw new Error(`Nicho desconhecido: ${nicheKey}`);
-
     const [existing] = await tx<WhatsappGroup[]>`
       SELECT * FROM whatsapp_groups
-      WHERE niche_id = ${niche.id} AND status = 'active'
-        AND COALESCE(member_count, 0) < max_members
+      WHERE status = 'active' AND COALESCE(member_count, 0) < max_members
       ORDER BY member_count ASC NULLS FIRST
       LIMIT 1
       FOR UPDATE
@@ -139,16 +144,16 @@ export async function reserveGroupSlot(
     let group = existing;
     if (!group) {
       // Sem grupo com vaga — cria um novo pelo Evolution API. Nome é só
-      // rótulo interno (não crítico), sequencial por nicho.
+      // rótulo interno (não crítico), sequencial geral (sem nicho).
       const [{ count }] = await tx<{ count: string }[]>`
-        SELECT COUNT(*)::text AS count FROM whatsapp_groups WHERE niche_id = ${niche.id}
+        SELECT COUNT(*)::text AS count FROM whatsapp_groups
       `;
-      const subject = `Achadinhos ${niche.label} #${Number(count) + 1}`;
+      const subject = `Achadinhos #${Number(count) + 1}`;
       const created = await createWhatsappGroup(subject);
 
       const [inserted] = await tx<WhatsappGroup[]>`
         INSERT INTO whatsapp_groups (niche_id, name, invite_link, member_count, status, group_jid)
-        VALUES (${niche.id}, ${subject}, ${created.inviteLink}, 0, 'active', ${created.groupJid})
+        VALUES (NULL, ${subject}, ${created.inviteLink}, 0, 'active', ${created.groupJid})
         RETURNING *
       `;
       group = inserted;
@@ -156,7 +161,7 @@ export async function reserveGroupSlot(
 
     const [intent] = await tx<{ id: number }[]>`
       INSERT INTO group_join_intents (niche_id, whatsapp_group_id, source_path)
-      VALUES (${niche.id}, ${group.id}, ${sourcePath})
+      VALUES (NULL, ${group.id}, ${sourcePath})
       RETURNING id
     `;
 

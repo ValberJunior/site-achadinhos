@@ -12,8 +12,7 @@
 // do fundo, do jeito que apareceria numa arte editada à mão. Nada de
 // rounded/overflow-hidden aqui, isso é que prendia ela numa caixa antes.
 
-const WHATSAPP_GROUP_URL =
-  process.env.NEXT_PUBLIC_WHATSAPP_GROUP_URL || "https://chat.whatsapp.com/SEU_LINK_AQUI";
+import { JoinGroupButton } from "@/components/JoinGroupButton";
 
 export default function HomePage() {
   return (
@@ -49,12 +48,7 @@ export default function HomePage() {
             link direto todo santo dia, sem enrolação.
           </p>
 
-          <a
-            href={WHATSAPP_GROUP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cta-pulse order-2 mt-7 flex w-full max-w-xs items-center justify-center gap-2.5 rounded-full bg-[#25D366] py-4 text-lg font-extrabold uppercase tracking-wide text-white transition-transform active:scale-[0.98] md:order-none"
-          >
+          <JoinGroupButton className="cta-pulse order-2 mt-7 flex w-full max-w-xs items-center justify-center gap-2.5 rounded-full bg-[#25D366] py-4 text-lg font-extrabold uppercase tracking-wide text-white transition-transform active:scale-[0.98] disabled:opacity-80 md:order-none">
             <svg
               viewBox="0 0 24 24"
               aria-hidden
@@ -63,7 +57,7 @@ export default function HomePage() {
               <path d="M12.04 2.5c-5.26 0-9.53 4.27-9.53 9.53 0 1.68.44 3.3 1.28 4.73L2.5 21.5l4.86-1.27a9.5 9.5 0 0 0 4.68 1.23h.01c5.26 0 9.53-4.27 9.53-9.53s-4.27-9.43-9.54-9.43Zm0 17.4a7.9 7.9 0 0 1-4.03-1.1l-.29-.17-3 .78.8-2.92-.19-.3a7.87 7.87 0 0 1-1.21-4.16c0-4.35 3.54-7.89 7.9-7.89 2.1 0 4.08.82 5.56 2.31a7.83 7.83 0 0 1 2.31 5.58c0 4.36-3.54 7.87-7.85 7.87Zm4.32-5.9c-.24-.12-1.4-.69-1.62-.77-.22-.08-.37-.12-.53.12-.16.24-.6.77-.74.93-.14.16-.27.18-.5.06-.24-.12-1-.37-1.9-1.17-.7-.62-1.18-1.4-1.31-1.63-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.53-1.28-.73-1.75-.19-.46-.38-.4-.53-.4h-.45c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.4-.57 1.6-1.12.2-.55.2-1.02.14-1.12-.06-.1-.22-.16-.46-.28Z" />
             </svg>
             Entrar no grupo
-          </a>
+          </JoinGroupButton>
         </div>
 
         {/* Coluna direita: foto da Bru, solta (recorte com fundo transparente).

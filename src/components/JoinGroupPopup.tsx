@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { NICHE_LIST } from "@/lib/niches";
+import { JoinGroupButton } from "@/components/JoinGroupButton";
 
-// Popup de "entrar no grupo de achadinhos" — a pessoa só escolhe o nicho,
-// nunca digita telefone. O clique já reserva a vaga (ou abre grupo novo se
-// precisar, ver /api/groups/join) e redireciona pro link de convite do
-// WhatsApp na hora.
+// Popup de "entrar no grupo de achadinhos" — um botão só, sem escolha de
+// nicho (dashboard parou de separar grupo por nicho, ver src/lib/data.ts) e
+// sem pedir telefone (decisão de 02/10/2026: zero fricção no clique). O
+// clique já reserva a vaga (ou abre grupo novo se precisar, ver
+// /api/groups/join) e redireciona pro link de convite do WhatsApp na hora.
 //
 // Aparece sozinho uma vez por sessão de navegador (sessionStorage, não
 // localStorage — reaparece em nova aba/sessão, não fica marcado pra
@@ -17,8 +18,6 @@ const AUTO_OPEN_DELAY_MS = 4000;
 
 export function JoinGroupPopup() {
   const [open, setOpen] = useState(false);
-  const [loadingSlug, setLoadingSlug] = useState<string | null>(null);
-  const [error, setError] = useState(false);
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | undefined;
@@ -45,24 +44,6 @@ export function JoinGroupPopup() {
     };
   }, []);
 
-  async function handlePick(nicheKey: string, slug: string) {
-    setLoadingSlug(slug);
-    setError(false);
-    try {
-      const res = await fetch("/api/groups/join", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nicheKey, sourcePath: window.location.pathname }),
-      });
-      if (!res.ok) throw new Error("failed");
-      const data: { inviteLink: string } = await res.json();
-      window.location.href = data.inviteLink;
-    } catch {
-      setError(true);
-      setLoadingSlug(null);
-    }
-  }
-
   if (!open) return null;
 
   return (
@@ -79,7 +60,7 @@ export function JoinGroupPopup() {
               📲 Entra no grupo de achadinhos
             </h2>
             <p className="mt-1 text-sm text-foreground/65">
-              Cupom sai primeiro lá — escolhe seu nicho e entra na hora, sem cadastro.
+              Cupom sai primeiro lá — um toque e você já está dentro, sem cadastro.
             </p>
           </div>
           <button
@@ -92,36 +73,9 @@ export function JoinGroupPopup() {
           </button>
         </div>
 
-        <div className="mt-4 flex flex-col gap-2">
-          {NICHE_LIST.map((niche) => {
-            const isLoading = loadingSlug === niche.slug;
-            return (
-              <button
-                key={niche.slug}
-                type="button"
-                disabled={loadingSlug !== null}
-                onClick={() => handlePick(niche.key, niche.slug)}
-                className="flex items-center gap-3 rounded-2xl border border-border bg-surface-2 px-4 py-3 text-left text-sm font-semibold transition-colors hover:border-brand disabled:opacity-60"
-              >
-                <span className="text-xl" aria-hidden>
-                  {niche.emoji}
-                </span>
-                <span className="flex-1">{niche.label}</span>
-                {isLoading ? (
-                  <span className="text-xs font-medium text-foreground/50">Entrando…</span>
-                ) : (
-                  <span className="text-whatsapp">→</span>
-                )}
-              </button>
-            );
-          })}
-        </div>
-
-        {error ? (
-          <p className="mt-3 text-xs font-medium text-red-500">
-            Deu ruim pra achar seu grupo — tenta de novo em instantes.
-          </p>
-        ) : null}
+        <JoinGroupButton className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-whatsapp py-3.5 text-base font-extrabold text-white transition-transform active:scale-[0.98] disabled:opacity-70">
+          Entrar no grupo agora →
+        </JoinGroupButton>
       </div>
     </div>
   );

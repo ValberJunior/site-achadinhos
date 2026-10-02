@@ -17,7 +17,7 @@ export interface Coupon {
 
 export interface WhatsappGroup {
   id: number;
-  niche_id: number;
+  niche_id: number | null;
   name: string;
   invite_link: string;
   member_count: number | null;
